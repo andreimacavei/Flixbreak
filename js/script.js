@@ -176,7 +176,6 @@ async function displayShowDetails() {
       <ul>
         <li><span class="text-secondary">Number of Episodes:</span> ${show.number_of_episodes}</li>
         <li><span class="text-secondary">Last episode to Air:</span> ${show.last_episode_to_air.name}</li>
-        <li><span class="text-secondary">Next episode to Air:</span> ${show.next_episode_to_air.name}</li>
         <li><span class="text-secondary">Status:</span> ${show.status}</li>
       </ul>
       <h4>Production Companies</h4>
