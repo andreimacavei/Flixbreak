@@ -15,6 +15,8 @@ const global = {
   }
 }
 
+// const searchInput = document.querySelector('#search-term');
+
 async function displayPopularMovies() {
   const { results } = await fetchAPIData('movie/popular');
 
@@ -450,6 +452,19 @@ function highlightActiveLink() {
   });
 }
 
+function onSearchActivateButton(e) {
+  const submitBtn = document.querySelector('#search-btn');
+  submitBtn.disabled = true;
+
+  if (e.target.value !== '') {
+    submitBtn.disabled = false;
+  } else {
+    submitBtn.disabled = true;
+  }
+
+  console.log(e.target.value);
+}
+
 // Show Alert Message
 function showAlert(message, className = 'error') {
   const alertEl = document.createElement('div');
@@ -493,4 +508,6 @@ function init() {
   highlightActiveLink();
 }
 
+// Event Listeners
+// searchInput.addEventListener('keydown', onSearchActivateButton);
 document.addEventListener('DOMContentLoaded', init);
