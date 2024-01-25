@@ -485,7 +485,7 @@ function addCommasToNumber(number) {
 function init() {
   let path = global.currentPage ?
       global.currentPage : window.location.pathname;
-  
+  console.log("current path:" + path);
   switch (path) {
     case '/':
     case '/index.html':
