@@ -483,15 +483,15 @@ function addCommasToNumber(number) {
 
 // Init app
 function init() {
-  let path = global.currentPage ?
-      global.currentPage : window.location.pathname;
-  console.log("current path:" + path);
-  switch (path) {
+  console.log("current page:" + global.currentPage);
+  console.log("window location path:" + window.location.pathname);
+  switch (global.currentPage) {
     case '/':
     case '/index.html':
       displayMovieSlider();
       displayPopularMovies();
       break;
+    case '/shows':
     case '/shows.html':
       displayShowSlider();
       displayPopularShows();
