@@ -1,5 +1,9 @@
-// Register your key at https://www.themoviedb.org/settings/api and enter it below
-// Only use this key for development or very small projects. You should store your key and make requests from a server
+import '@fortawesome/fontawesome-free/js/all.js';
+import Swiper from 'swiper';
+
+import './css/style.css';
+import './css/spinner.css';
+
 const global = {
   currentPage: window.location.pathname,
   searchState: {
@@ -9,6 +13,7 @@ const global = {
     totalPages: 1,
     totalResults: 0
   },
+  // TODO - Move to .env file
   api: {
     apiKey: '50cb228c104df94da4a51de0f27a85ce',
     apiUrl: 'https://api.themoviedb.org/3/'
@@ -486,12 +491,12 @@ function init() {
   switch (global.currentPage) {
     case '/':
     case '/index.html':
-      displayMovieSlider();
+      // displayMovieSlider();
       displayPopularMovies();
       break;
     case '/shows':
     case '/shows.html':
-      displayShowSlider();
+      // displayShowSlider();
       displayPopularShows();
       break;
     case '/movie-details.html':
