@@ -1,8 +1,10 @@
 import '@fortawesome/fontawesome-free/js/all.js';
 import Swiper from 'swiper';
 
+import 'swiper/css';
 import './css/style.css';
 import './css/spinner.css';
+
 
 const global = {
   currentPage: window.location.pathname,
@@ -491,12 +493,12 @@ function init() {
   switch (global.currentPage) {
     case '/':
     case '/index.html':
-      // displayMovieSlider();
+      displayMovieSlider();
       displayPopularMovies();
       break;
     case '/shows':
     case '/shows.html':
-      // displayShowSlider();
+      displayShowSlider();
       displayPopularShows();
       break;
     case '/movie-details.html':

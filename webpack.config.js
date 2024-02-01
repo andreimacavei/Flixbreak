@@ -42,23 +42,23 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Webpack App',
       filename: 'index.html',
-      template: './src/index.html',
+      template: './src/assets/index.html',
     }),
     new HtmlWebpackPlugin({
       filename: 'shows.html',
-      template: './src/shows.html',
+      template: './src/assets/shows.html',
     }),
     new HtmlWebpackPlugin({
       filename: 'movie-details.html',
-      template: './src/movie-details.html',
+      template: './src/assets/movie-details.html',
     }),
     new HtmlWebpackPlugin({
       filename: 'tv-details.html',
-      template: './src/tv-details.html',
+      template: './src/assets/tv-details.html',
     }),
     new HtmlWebpackPlugin({
       filename: 'search.html',
-      template: './src/search.html',
+      template: './src/assets/search.html',
     }),
     new MiniCssExtractPlugin(),
   ],
