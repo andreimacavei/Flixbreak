@@ -1,5 +1,13 @@
-// Register your key at https://www.themoviedb.org/settings/api and enter it below
-// Only use this key for development or very small projects. You should store your key and make requests from a server
+import '@fortawesome/fontawesome-free/js/all.js';
+import Swiper from 'swiper';
+import { Autoplay } from 'swiper';
+
+import 'swiper/css';
+import 'swiper/css/autoplay';
+import './css/style.css';
+import './css/spinner.css';
+
+
 const global = {
   currentPage: window.location.pathname,
   searchState: {
@@ -9,6 +17,7 @@ const global = {
     totalPages: 1,
     totalResults: 0
   },
+  // TODO - Move to .env file
   api: {
     apiKey: '50cb228c104df94da4a51de0f27a85ce',
     apiUrl: 'https://api.themoviedb.org/3/'
@@ -372,6 +381,7 @@ async function displayShowSlider() {
 
 function initSwiper() {
   const swiper = new Swiper('.swiper', {
+    modules: [Autoplay],
     slidesPerView: 1,
     slidesPerGroup: 1,
     spaceBetween: 30,
@@ -395,7 +405,8 @@ function initSwiper() {
         // spaceBetween: 30
       }
     }
-  })
+  });
+  swiper.init();
 }
 
 // Fetch data from TMDB API
