@@ -1,7 +1,9 @@
 import '@fortawesome/fontawesome-free/js/all.js';
 import Swiper from 'swiper';
+import { Autoplay } from 'swiper';
 
 import 'swiper/css';
+import 'swiper/css/autoplay';
 import './css/style.css';
 import './css/spinner.css';
 
@@ -379,11 +381,12 @@ async function displayShowSlider() {
 
 function initSwiper() {
   const swiper = new Swiper('.swiper', {
+    modules: [Autoplay],
     slidesPerView: 1,
     slidesPerGroup: 1,
     spaceBetween: 30,
     freeMode: true,
-    loop: false,
+    loop: true,
     autoplay: {
       delay: 4000,
       disableOnInteraction: false
@@ -402,7 +405,8 @@ function initSwiper() {
         // spaceBetween: 30
       }
     }
-  })
+  });
+  swiper.init();
 }
 
 // Fetch data from TMDB API
