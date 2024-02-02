@@ -97,30 +97,32 @@ async function displayMovieDetails() {
 
   div.innerHTML = `
   <div class="details-top">
-    <div>
-      ${
-        movie.poster_path
-          ? `<img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" 
-            class="card-img-top" alt="${movie.title}">`
-          : `<img src="../images/no-image.jpg"
-            class="card-img-top" alt="${movie.title}">`
-      }
-    </div>
-    <div>
-      <h2>${movie.title}</h2>
-      <p>
-        <i class="fas fa-star text-primary"></i>
-        ${movie.vote_average.toFixed(1)} / 10
-      </p>
-      <p class="text-muted">Release Date: ${movie.release_date}</p>
-      <p>
-        ${movie.overview}
-      </p>
-      <h5>Genres</h5>
-      <ul class="list-group">
-        ${movie.genres.map((genre) => `<li>${genre.name}</li>`).join('')}
-      </ul>
-      <a href="${movie.homepage}" target="_blank" class="btn">Visit Movie Homepage</a>
+    <div class="media">
+      <div class="image">
+        ${
+          movie.poster_path
+            ? `<img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" 
+              class="card-img-top" alt="${movie.title}">`
+            : `<img src="../images/no-image.jpg"
+              class="card-img-top" alt="${movie.title}">`
+        }
+      </div>
+      <div class="content">
+        <h2>${movie.title}</h2>
+        <p>
+          <i class="fas fa-star text-primary"></i>
+          ${movie.vote_average.toFixed(1)} / 10
+        </p>
+        <p class="text-muted">Release Date: ${movie.release_date}</p>
+        <p>
+          ${movie.overview}
+        </p>
+        <h5>Genres</h5>
+        <ul class="list-group">
+          ${movie.genres.map((genre) => `<li>${genre.name}</li>`).join('')}
+        </ul>
+        <a href="${movie.homepage}" target="_blank" class="btn">Visit Movie Homepage</a>
+      </div>
     </div>
     </div>
     <div class="details-bottom">
@@ -154,30 +156,32 @@ async function displayShowDetails() {
 
   div.innerHTML = `
   <div class="details-top">
-    <div>
-      ${
-        show.poster_path
-          ? `<img src="https://image.tmdb.org/t/p/w500${show.poster_path}" 
-            class="card-img-top" alt="${show.name}">`
-          : `<img src="../images/no-image.jpg"
-            class="card-img-top" alt="${show.name}">`
-      }
-    </div>
-    <div>
-      <h2>${show.name}</h2>
-      <p>
-        <i class="fas fa-star text-primary"></i>
-        ${show.vote_average.toFixed(1)} / 10
-      </p>
-      <p class="text-muted">Last Air Date: ${show.last_air_date}</p>
-      <p>
-        ${show.overview}
-      </p>
-      <h5>Genres</h5>
-      <ul class="list-group">
-        ${show.genres.map((genre) => `<li>${genre.name}</li>`).join('')}
-      </ul>
-      <a href="${show.homepage}" target="_blank" class="btn">Visit show Homepage</a>
+    <div class="media">
+      <div class="image">
+        ${
+          show.poster_path
+            ? `<img src="https://image.tmdb.org/t/p/w500${show.poster_path}" 
+              class="card-img-top" alt="${show.name}">`
+            : `<img src="../images/no-image.jpg"
+              class="card-img-top" alt="${show.name}">`
+        }
+      </div>
+      <div class="content">
+        <h2>${show.name}</h2>
+        <p>
+          <i class="fas fa-star text-primary"></i>
+          ${show.vote_average.toFixed(1)} / 10
+        </p>
+        <p class="text-muted">Last Air Date: ${show.last_air_date}</p>
+        <p>
+          ${show.overview}
+        </p>
+        <h5>Genres</h5>
+        <ul class="list-group">
+          ${show.genres.map((genre) => `<li>${genre.name}</li>`).join('')}
+        </ul>
+        <a href="${show.homepage}" target="_blank" class="btn">Visit show Homepage</a>
+      </div>
     </div>
     </div>
     <div class="details-bottom">

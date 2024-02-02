@@ -219,16 +219,32 @@ section h2 {
 .details-top {
   display: flex;
   justify-content: space-between;
+  
   align-items: center;
   margin: 50px 0 30px;
 }
 
 .details-top img {
-  width: 400px;
+  max-width: 400px;
   height: 100%;
-  margin-right: 60px;
+  align-items: center;
+  margin-right: 20px;
   object-fit: cover;
 }
+.details-top .media {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.media .content {
+  flex: 1 1 300px;
+  padding: 10px;
+}
+
+/* 
+.details-top div:nth-child(2) {
+  flex: 1 1 300px;
+} */
 
 .details-top p {
   margin: 20px 0;
