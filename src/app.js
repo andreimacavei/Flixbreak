@@ -386,7 +386,7 @@ function initSwiper() {
     slidesPerGroup: 1,
     spaceBetween: 30,
     freeMode: true,
-    loop: true,
+    loop: false,
     autoplay: {
       delay: 4000,
       disableOnInteraction: false
