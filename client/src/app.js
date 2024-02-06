@@ -1,12 +1,9 @@
-import '@fortawesome/fontawesome-free/js/all.js';
-import Swiper from 'swiper';
-import { Autoplay } from 'swiper';
+// import '@fortawesome/fontawesome-free/js/all.js';
 
-import 'swiper/css';
-import 'swiper/css/autoplay';
 import './css/style.css';
-import './css/spinner.css';
 
+import { fetchAPIData, searchAPIData } from './services/tmdbApiData';
+import { displayMovieSlider, displayShowSlider } from './components/slider';
 
 const global = {
   currentPage: window.location.pathname,
@@ -16,11 +13,6 @@ const global = {
     page: 1,
     totalPages: 1,
     totalResults: 0
-  },
-  // TODO - Move to .env file
-  api: {
-    apiKey: '50cb228c104df94da4a51de0f27a85ce',
-    apiUrl: 'https://api.themoviedb.org/3/'
   }
 }
 
@@ -39,7 +31,7 @@ async function displayPopularMovies() {
           movie.poster_path
             ? `<img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" 
               class="card-img-top" alt="${movie.title}">`
-            : `<img src="../images/no-image.jpg"
+            : `<img src="./images/no-image.jpg"
               class="card-img-top" alt="${movie.title}">`
         }
       </a>
@@ -69,7 +61,7 @@ async function displayPopularShows() {
           tvShow.poster_path
             ? `<img src="https://image.tmdb.org/t/p/w500${tvShow.poster_path}" 
               class="card-img-top" alt="${tvShow.name}">`
-            : `<img src="../images/no-image.jpg"
+            : `<img src="./images/no-image.jpg"
               class="card-img-top" alt="${tvShow.name}">`
         }
       </a>
@@ -103,7 +95,7 @@ async function displayMovieDetails() {
           movie.poster_path
             ? `<img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" 
               class="card-img-top" alt="${movie.title}">`
-            : `<img src="../images/no-image.jpg"
+            : `<img src="./images/no-image.jpg"
               class="card-img-top" alt="${movie.title}">`
         }
       </div>
@@ -162,7 +154,7 @@ async function displayShowDetails() {
           show.poster_path
             ? `<img src="https://image.tmdb.org/t/p/w500${show.poster_path}" 
               class="card-img-top" alt="${show.name}">`
-            : `<img src="../images/no-image.jpg"
+            : `<img src="./images/no-image.jpg"
               class="card-img-top" alt="${show.name}">`
         }
       </div>
@@ -234,7 +226,8 @@ async function search() {
   global.searchState.term = urlParams.get('search-term');
 
   if (global.searchState.term !== '' && global.searchState.type !== null) {
-    const { results, total_pages, page, total_results } = await searchAPIData();
+    const { results, total_pages, page, total_results } = await searchAPIData(global.searchState.type,
+      global.searchState.term, global.searchState.page);
 
     global.searchState.page = page;
     global.searchState.totalPages = total_pages;
@@ -270,7 +263,7 @@ function displaySearchResults(results) {
             ? `<img src="https://image.tmdb.org/t/p/w500${result.poster_path}" 
               class="card-img-top" alt="${global.searchState.type === 'movie' ? result.title :
               result.name}">`
-            : `<img src="../images/no-image.jpg"
+            : `<img src="./images/no-image.jpg"
               class="card-img-top" alt="${global.searchState.type === 'movie' ? result.title :
               result.name}">`
         }
@@ -319,142 +312,20 @@ function displayPagination() {
   // Next page
   document.querySelector('#next').addEventListener('click', async () => {
     global.searchState.page++;
-    const { results, total_pages } = await searchAPIData();
+    const { results, total_pages } = await searchAPIData(global.searchState.type,
+      global.searchState.term, global.searchState.page);
     displaySearchResults(results);
   });
 
   // Previous page
   document.querySelector('#prev').addEventListener('click', async () => {
     global.searchState.page--;
-    const { results, total_pages } = await searchAPIData();
+    const { results, total_pages } = await searchAPIData(global.searchState.type,
+      global.searchState.term, global.searchState.page);
     displaySearchResults(results);
   });
 }
 
-// Display Slider Movies
-async function displayMovieSlider() {
-  const { results } = await fetchAPIData('movie/now_playing');
-
-  results.forEach((movie) => {
-    const div = document.createElement('div');
-    div.classList.add('swiper-slide');
-
-    div.innerHTML = `
-      <a href="movie-details.html?id=${movie.id}">
-        <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" />
-      </a>
-      <h4 class="swiper-rating">
-        <i class="fas fa-star text-secondary"></i> ${movie.vote_average.toFixed(1)} / 10
-      </h4>
-    `;
-
-    document.querySelector('.swiper-wrapper').appendChild(div);
-
-    initSwiper();
-  });
-}
-
-async function displayShowSlider() {
-  const { results } = await fetchAPIData('tv/airing_today');
-
-  results.forEach((show) => {
-    const div = document.createElement('div');
-    div.classList.add('swiper-slide');
-
-    div.innerHTML = `
-      <a href="tv-details.html?id=${show.id}">
-      ${
-        show.poster_path
-          ? `<img src="https://image.tmdb.org/t/p/w500${show.poster_path}" 
-            class="card-img-top" alt="${show.name}">`
-          : `<img src="../images/no-image.jpg"
-            class="card-img-top" alt="${show.name}">`
-      }
-      </a>
-      <h4 class="swiper-rating">
-        <i class="fas fa-star text-secondary"></i> ${show.vote_average} / 10
-      </h4>
-    `;
-
-    document.querySelector('.swiper-wrapper').appendChild(div);
-
-    initSwiper();
-  });
-}
-
-
-function initSwiper() {
-  const swiper = new Swiper('.swiper', {
-    modules: [Autoplay],
-    slidesPerView: 1,
-    slidesPerGroup: 1,
-    spaceBetween: 30,
-    freeMode: true,
-    loop: false,
-    autoplay: {
-      delay: 4000,
-      disableOnInteraction: false
-    },
-    breakpoints: {
-      500: {
-        slidesPerView: 2,
-        // spaceBetween: 30
-      },
-      700: {
-        slidesPerView: 3,
-        // spaceBetween: 30
-      },
-      1200: {
-        slidesPerView: 4,
-        // spaceBetween: 30
-      }
-    }
-  });
-  swiper.init();
-}
-
-// Fetch data from TMDB API
-async function fetchAPIData(endpoint) {
-  
-  const API_KEY = global.api.apiKey;
-  const API_URL = global.api.apiUrl;
-
-  showSpinner();
-
-  const response = await fetch(`${API_URL}${endpoint}?api_key=${API_KEY}&language=en-US`);
-
-  const data = await response.json();
-
-  hideSpinner();
-
-  return data;
-}
-
-// Make request to Search
-async function searchAPIData() {
-  const API_KEY = global.api.apiKey;
-  const API_URL = global.api.apiUrl;
-
-  showSpinner();
-
-  const response = await fetch(`
-    ${API_URL}search/${global.searchState.type}?api_key=${API_KEY}&language=en-US
-    &query=${global.searchState.term}&page=${global.searchState.page}`
-  );
-  const data = await response.json();
-
-  hideSpinner();
-
-  return data;
-}
-
-function showSpinner() {
-  document.querySelector('.spinner').classList.add('show');
-}
-
-function hideSpinner() {
-  document.querySelector('.spinner').classList.remove('show');
-}
 
 // Highlight active link
 function highlightActiveLink() {

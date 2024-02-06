@@ -7,6 +7,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap"
       rel="stylesheet"
     />
@@ -14,12 +20,12 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/spinner.css" />
     <script src="js/script.js" defer></script> -->
-    <title>FlixBreak | Search Movies & Shows</title>
+    <title>FlixBreak | Show Details</title>
   </head>
   <body>
     <header class="main-header">
       <div class="container">
-        <div class="logo"><a href="/">FlixBreak</a></div>
+        <div class="logo"><a href="/">FLIXBREAK</a></div>
         <nav>
           <ul>
             <li>
@@ -33,45 +39,20 @@
       </div>
     </header>
 
-    <!-- Search Movies -->
-    <section class="search">
-      <div class="container">
-        <div id="alert"></div>
-        <form action="/search.html" class="search-form">
-          <div class="search-radio">
-            <input type="radio" id="movie" name="type" value="movie" checked />
-            <label for="movies">Movies</label>
-            <input type="radio" id="tv" name="type" value="tv" />
-            <label for="shows">TV Shows</label>
-          </div>
-          <div class="search-flex">
-            <input
-              type="text"
-              name="search-term"
-              id="search-term"
-              placeholder="Enter search term"
-            />
-            <button id="search-btn" class="btn" type="submit">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-        </form>
+    <!-- Show Details -->
+    <section class="container">
+      <div class="back">
+        <a class="btn" href="shows.html">Back To TV Shows</a>
       </div>
-    </section>
-
-    <!-- Search Results -->
-    <section id="search-results-wrapper" class="container">
-      <heading id="search-results-heading"></heading>
-      <div id="search-results" class="grid">
-      </div>
-      <div id="pagination">
+      <!-- Show Details Output -->
+      <div id="show-details">
       </div>
     </section>
 
     <!-- Footer -->
     <footer class="main-footer">
       <div class="container">
-        <div class="logo"><span>FlixBreak</span></div>
+        <div class="logo"><span>FLIXBREAK</span></div>
         <div class="social-links">
           <a href="https://www.facebook.com" target="_blank"
             ><i class="fab fa-facebook-f"></i
