@@ -5,7 +5,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = {
-  mode: "development",
+  mode: "production",
   // entry: {
   //   app: './src/app.js',
   //   tmdbApiData: './src/services/tmdbApiData.js',
