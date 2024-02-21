@@ -1,9 +1,13 @@
 // import '@fortawesome/fontawesome-free/js/all.js';
-
+import { inject } from '@vercel/analytics';
 import './css/style.css';
 
 import { fetchAPIData, searchAPIData } from './services/tmdbApiData';
 import { displayMovieSlider, displayShowSlider } from './components/slider';
+
+
+// Enable Vercel analytics
+inject();
 
 const global = {
   currentPage: window.location.pathname,
